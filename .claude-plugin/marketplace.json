@@ -1,0 +1,13 @@
+{
+  "name": "josete734",
+  "owner": { "name": "José Castillo", "url": "https://github.com/josete734" },
+  "plugins": [
+    {
+      "name": "pecuoc",
+      "source": "./",
+      "description": "Asistente para escribir y compilar entregas UOC (PEC/PAC/PR) con P3CTeX.",
+      "version": "0.1.0",
+      "author": { "name": "José Castillo" }
+    }
+  ]
+}
