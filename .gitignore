@@ -1,0 +1,14 @@
+# LaTeX aux
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+*.synctex.gz
+# macOS
+.DS_Store
+# Pruebas locales
+/.probe/
