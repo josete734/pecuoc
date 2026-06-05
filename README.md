@@ -1,64 +1,103 @@
+<div align="center">
+
 # pecuoc
 
-Plugin de Claude Code para escribir y compilar entregas UOC (PEC/PAC/PR) con la clase LaTeX P3CTeX.
+**Escribe y compila tus entregas de la UOC (PEC / PAC / PR) en LaTeX, desde Claude Code.**
 
-## Requisitos
+Plugin de [Claude Code](https://claude.com/claude-code) que envuelve la clase LaTeX
+[**P3CTeX**](https://github.com/DidacLL/P3CTeX) con una skill, un subagente y un
+autoinstalador para macOS.
 
-- macOS
-- MacTeX o TeX Live (proporciona `pdflatex`, `latexmk`, `bibtex`, `kpsewhich`, `mktexlsr`)
-- Claude Code
+![version](https://img.shields.io/badge/version-0.2.0-3FB984)
+![license](https://img.shields.io/badge/license-MIT-blue)
+![platform](https://img.shields.io/badge/platform-macOS-lightgrey)
+![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-CC785C)
+![LaTeX](https://img.shields.io/badge/LaTeX-P3CTeX-000078)
 
-## Instalación
+</div>
 
-```
+---
+
+## 🚀 Inicio rápido
+
+```text
 /plugin marketplace add josete734/pecuoc
 /plugin install pecuoc@josete734
 /pecuoc:setup
 ```
 
-## Uso
+`/pecuoc:setup` deja tu entorno LaTeX listo (clona P3CTeX, lo registra en TeX Live y compila
+un documento de prueba). Después, pide a la skill o al subagente `pecuoc-author` que te
+escriba una entrega, o copia una plantilla de `skills/pecuoc-author/templates/`.
 
-Invoca la skill `pecuoc-author` para escribir y compilar una entrega de forma interactiva, o el subagente `pecuoc-author` para generar un documento completo en un solo paso. Para empezar una entrega nueva, copia una de las carpetas de `skills/pecuoc-author/templates/` (`minimal` o `extended`) como punto de partida.
+## ✨ Características
 
-La prosa del documento es configurable por asignatura (catalán o castellano); el código y los identificadores van siempre en inglés.
+| | |
+|---|---|
+| 📝 **Autoría guiada** | Skill `pecuoc-author` con cheatsheets verificados de la API `px*` (tablas, código, UML, imágenes, datos). |
+| 🤖 **Subagente** | `pecuoc-author` genera una entrega completa: redacta, compila y verifica el PDF. |
+| ⚙️ **Autoinstalador** | `/pecuoc:setup` configura P3CTeX en macOS/TeX Live de forma idempotente y reversible. |
+| 🎨 **Identidad oficial UOC** | P3CTeX ya usa los colores corporativos oficiales (azul `#000078`, cian `#73EDFF`). |
+| 🌐 **Idioma por asignatura** | Prosa en catalán o castellano; código e identificadores en inglés. |
+| 🔔 **Aviso automático** | Un hook `SessionStart` te recuerda ejecutar `/pecuoc:setup` si falta el entorno. |
 
-## Qué hace el setup
+## 📦 Requisitos
 
-El comando `/pecuoc:setup` ejecuta `scripts/install.sh`, que realiza los pasos siguientes:
+- **macOS**
+- **MacTeX** o **TeX Live** (aporta `pdflatex`, `latexmk`, `bibtex`, `kpsewhich`, `mktexlsr`) — [descarga](https://tug.org/mactex/)
+- **Claude Code**
 
-1. Clona el repositorio P3CTeX en `~/P3CTeX`.
-2. Crea symlinks en `~/Library/texmf/tex/latex/P3CTeX` y `~/Library/texmf/tex/latex/P3CTeX-code`.
+## 🧭 Uso
+
+- **Escribir/compilar interactivamente** → invoca la skill `pecuoc-author` (o simplemente trabaja en un `.tex` con `\documentclass{P3CTeX}`).
+- **Generar una entrega completa** → invoca el subagente `pecuoc-author` (redacta + compila + verifica).
+- **Empezar de cero** → copia `skills/pecuoc-author/templates/minimal` o `…/extended`.
+- **Ver un ejemplo real y completo** → carpeta [`examples/POO`](examples/POO).
+
+Compila con `latexmk -pdf -interaction=nonstopmode <doc>.tex`. La bibliografía usa **bibtex**.
+El éxito se mide por el **PDF generado** (no por el código de salida): `latexmk` puede devolver
+un código distinto de cero ante errores recuperables y aun así producir el PDF.
+
+## 🔧 Qué hace `/pecuoc:setup`
+
+1. Clona **P3CTeX** en `~/P3CTeX`.
+2. Crea symlinks en `~/Library/texmf/tex/latex/P3CTeX` y `…/P3CTeX-code`.
 3. Ejecuta `mktexlsr` para actualizar la base de datos de TeX.
-4. Verifica la instalación con `kpsewhich P3CTeX.cls`.
+4. Verifica con `kpsewhich P3CTeX.cls`.
 5. Compila un documento de prueba para confirmar que todo funciona.
 
-## Desinstalación
+Es **idempotente** (puedes re-ejecutarlo) y **no toca** el árbol de TeX del sistema.
+
+## 🗑️ Desinstalación
 
 ```bash
 bash scripts/uninstall.sh   # elimina los symlinks y actualiza mktexlsr
 rm -rf ~/P3CTeX             # elimina el repositorio clonado
 ```
 
-Después desinstala el plugin desde Claude Code.
+Después, desinstala el plugin desde Claude Code (`/plugin uninstall pecuoc@josete734`).
 
-## Linux / Windows
+## 🐧 Linux / 🪟 Windows
 
-El autoinstalador soporta oficialmente **macOS**.
+El autoinstalador soporta oficialmente **macOS**. En otros sistemas:
 
-- **Linux**: `TEXMFHOME` suele ser `~/texmf`; ajusta los symlinks de forma análoga y ejecuta `mktexlsr`.
-- **Windows / MiKTeX**: registra la carpeta raíz usando MiKTeX Console o `initexmf --register-root`, luego actualiza la base de datos.
+- **Linux**: `TEXMFHOME` suele ser `~/texmf`; crea los symlinks de forma análoga y ejecuta `mktexlsr`.
+- **Windows / MiKTeX**: registra la carpeta raíz con MiKTeX Console o `initexmf --register-root`, y actualiza la base de datos.
 
-## Identidad visual UOC
+## 🎨 Identidad visual UOC
 
 P3CTeX ya incorpora los colores corporativos oficiales de la UOC: azul `#000078` y cian `#73EDFF`.
 
-El logotipo de la UOC es una marca registrada y **no se incluye** en este repositorio. Si necesitas el logo para tus entregas, extráelo tú mismo desde tu copia de `Office-UOC-Generic.zip` y colócalo en `~/.pecuoc/assets`.
+El **logotipo** de la UOC es una marca registrada y **no se incluye** en este repositorio. Si
+necesitas el logo para tus portadas, extráelo tú mismo desde tu copia de
+`Office-UOC-Generic.zip` y colócalo en `~/.pecuoc/assets`.
 
-## Atribución
+## 🙏 Atribución
 
-- **P3CTeX** © DidacLL, licencia GPL-3.0 — <https://github.com/DidacLL/P3CTeX>. Se clona como dependencia en tiempo de ejecución; no se redistribuye en este repositorio.
+- **P3CTeX** © [DidacLL](https://github.com/DidacLL/P3CTeX) — licencia **GPL-3.0**. Se clona como
+  dependencia en tiempo de ejecución; **no se redistribuye** su código en este repositorio.
 - **Plantillas oficiales UOC** © Universitat Oberta de Catalunya (UOC).
 
-## Licencia
+## 📄 Licencia
 
-MIT — véase el archivo [LICENSE](LICENSE).
+**MIT** — véase [LICENSE](LICENSE).

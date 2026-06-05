@@ -1,0 +1,31 @@
+\input{../SubjectPreamble.tex}
+\LoadPreamble{PAC1}{Primera Prueba de Evaluación Continua}
+\begin{document}
+
+\section{Introducción}
+Esta PAC de ejemplo ha sido generada por el plugin \texttt{pecuoc} para demostrar
+el flujo de trabajo con la clase \PECTeX. El contenido está en castellano, mientras
+que el código y los identificadores se mantienen en inglés.
+
+\section{Ejercicio 1: comparativa de paradigmas}
+A continuación se resumen tres pilares de la programación orientada a objetos
+mediante el módulo \texttt{pxTAB}:
+
+\pxTABsetup{style=header, align=l}
+\pxTable{Concepto, Definición, Mecanismo}%
+  {Encapsulación, Ocultar el estado interno, campos privados}%
+  {Herencia, Reutilizar comportamiento, palabra clave extends}%
+  {Polimorfismo, Una interfaz y varias formas, sobrescritura de métodos}
+
+\section{Ejercicio 2: diseño de clases con UML}
+El módulo \texttt{pxUML} permite declarar clases y dibujarlas:
+
+\pxUMLClass{Vehiculo}{- matricula : String}[+ arrancar() : void]
+\pxUMLClass{Coche}{- numPuertas : int}[+ arrancar() : void]
+
+\pxUMLDiagram{
+  \drawclass[text width=14em]{Vehiculo}[0,0]
+  \drawclass[text width=14em]{Coche}[0,-4]
+}
+
+\end{document}

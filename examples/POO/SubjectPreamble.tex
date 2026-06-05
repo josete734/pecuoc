@@ -1,0 +1,20 @@
+\input{../SharedPreamble.tex}
+\NewDocumentCommand{\LoadPreamble}{O{PR} m m}{
+  \PECTeXconfig{
+    data = {
+      subj-fullname  = {Programación Orientada a Objetos},
+      subj-shortname = {POO},
+      subj-code      = {05.555},
+      ca-shortname   = {#2},
+      ca-fullname    = {#3},
+      date           = {\today}
+    },
+    #1
+  }
+  \PECTeXcover{outter-backtitle, subtitle, subsubtitle}
+}
+\AtEndDocument{
+  \nocite{*}
+  \bibliographystyle{abbrvnat}
+  \bibliography{../references}
+}

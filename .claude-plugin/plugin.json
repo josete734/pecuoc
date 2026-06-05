@@ -1,7 +1,7 @@
 {
   "name": "pecuoc",
   "displayName": "PEC.UOC — P3CTeX Author",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Asistente para escribir y compilar entregas UOC (PEC/PAC/PR) con la clase LaTeX P3CTeX y los módulos px*.",
   "author": { "name": "José Castillo", "url": "https://github.com/josete734" },
   "homepage": "https://github.com/josete734/pecuoc",
