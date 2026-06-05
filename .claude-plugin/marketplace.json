@@ -1,6 +1,9 @@
 {
   "name": "josete734",
   "owner": { "name": "José Castillo", "url": "https://github.com/josete734" },
+  "metadata": {
+    "description": "Plugins de José Castillo para Claude Code: escribir y compilar entregas UOC (PEC/PAC/PR) con LaTeX (P3CTeX)."
+  },
   "plugins": [
     {
       "name": "pecuoc",
