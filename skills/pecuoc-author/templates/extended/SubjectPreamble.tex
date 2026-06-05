@@ -1,16 +1,14 @@
 \input{../SharedPreamble.tex}
-
 % \LoadPreamble[perfil]{nom-curt}{nom-complet}
-% #1 [O{PR}]  : perfil P3CTeX -- IMPORTANT: no incloure idioma (cat/es/en),
-%               ja definit a \documentclass al SharedPreamble
-%               PR (cover+toc) | no-cover,toc | cover,no-toc
+% #1 [O{PR}]  : perfil P3CTeX (opcional, entre claudàtors) -- p.ex. [PAC], [PEC], [PR]
+%               IMPORTANT: no incloure idioma (cat/es/en), ja definit a \documentclass.
 % #2  {m}     : nom curt de l'activitat (p.ex. PAC1)
-% #3 [O{#2}]  : nom complet de l'activitat -- default = #2
+% #3  {m}     : nom complet de l'activitat
 %
 % Exemples d'us:
 %   \LoadPreamble{PAC1}{Primera PAC}
-%   \LoadPreamble[PR]{PR1}{Prim\`{e}ra Pr\`{a}ctica}
-\NewDocumentCommand{\LoadPreamble}{O{PR} m O{#2}}{
+%   \LoadPreamble[PAC]{PAC2}{Segona PAC}
+\NewDocumentCommand{\LoadPreamble}{O{PR} m m}{
   \PECTeXconfig{
     data = {
       subj-fullname  = {Nom de l'assignatura},

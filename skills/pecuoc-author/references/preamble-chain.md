@@ -41,7 +41,7 @@ Carrega `SharedPreamble.tex` i defineix una comanda `\LoadPreamble` que establei
 ```latex
 \input{../SharedPreamble.tex}
 
-\NewDocumentCommand{\LoadPreamble}{O{PR} m O{#2}}{
+\NewDocumentCommand{\LoadPreamble}{O{PR} m m}{
   \PECTeXconfig{
     data = {
       subj-fullname  = {Bases de Dades},
@@ -66,7 +66,7 @@ Carrega `SharedPreamble.tex` i defineix una comanda `\LoadPreamble` que establei
 **Signatura de `\LoadPreamble`:**
 - `#1` `[O{PR}]`: perfil P3CTeX (default `PR`)
 - `#2` `{m}`: nom curt de l'activitat (p. ex., `PAC1`)
-- `#3` `[O{#2}]`: nom complet de l'activitat (default = nom curt)
+- `#3` `{m}`: nom complet de l'activitat (obligatori, entre claus)
 
 Ubicació recomanada: directori de l'assignatura (p. ex., `~/curs/BD/SubjectPreamble.tex`).
 
