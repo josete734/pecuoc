@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.1] - 2026-06-08
+### Fixed
+- El plugin no cargaba (`Duplicate hooks file detected`): se elimina la clave `hooks`
+  del `plugin.json`. Claude Code ya carga `hooks/hooks.json` automáticamente, así que
+  `manifest.hooks` solo debe referenciar archivos de hooks adicionales.
+
 ## [0.2.0] - 2026-06-05
 ### Fixed
 - `/pecuoc:setup` ya no depende de `${CLAUDE_PLUGIN_ROOT}` (no se expande en el cuerpo de
