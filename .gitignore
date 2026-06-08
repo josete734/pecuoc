@@ -8,6 +8,9 @@
 *.bbl
 *.blg
 *.synctex.gz
+*.listing
+# PDFs compilados (artefactos; las fuentes .tex son la verdad)
+*.pdf
 # macOS
 .DS_Store
 # Pruebas locales

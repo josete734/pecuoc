@@ -33,6 +33,10 @@ class/cover keys, `references/preamble-chain.md` for the preamble pattern, and
 - A recoverable error can still produce a PDF and make latexmk exit 12 — **verify the PDF
   exists and has pages**, then read the `.log` for real errors. Never emit `\bigskip\\`
   (use `\bigskip\par` or `\medskip` + blank line).
+- **Gotchas:** `\pxCodeIn` is not verbatim — avoid `~`, `\`, `#`, `%`, `_` inside it; wrap
+  commands and capitals in `.bib` titles with braces (e.g. `{\LaTeX}`, `{UOC}`); confirm page count via
+  `pdfinfo` → `mdls` → count `[N]` entries in the `.log` — see `references/compile-macos.md`
+  for details.
 
 ## When to delegate
 For a full document (generate + compile + verify, iterate on errors), invoke the

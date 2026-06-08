@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.0] - 2026-06-08
+### Added
+- Linter pre-compilación `scripts/lint-tex.sh`: detecta `\bigskip\\`, `\pxCodeIn` con
+  caracteres activos y títulos `.bib` con comandos sin proteger.
+### Changed
+- Verificación de páginas robusta con cadena de alternativas pdfinfo → mdls → recuento
+  de `[N]` en el `.log` (en `scripts/verify.sh`, el subagente y las referencias), en vez
+  de depender solo de pdfinfo.
+### Docs
+- Documentadas las trampas de `\pxCodeIn` (no es verbatim) y la protección con llaves de
+  los títulos `.bib`, en las referencias, la skill y el subagente.
+- README actualizado: badge 0.3.0 y flujo de instalación con enable + reinicio de sesión.
+
 ## [0.2.1] - 2026-06-08
 ### Fixed
 - El plugin no cargaba (`Duplicate hooks file detected`): se elimina la clave `hooks`

@@ -8,7 +8,7 @@ Plugin de [Claude Code](https://claude.com/claude-code) que envuelve la clase La
 [**P3CTeX**](https://github.com/DidacLL/P3CTeX) con una skill, un subagente y un
 autoinstalador para macOS.
 
-![version](https://img.shields.io/badge/version-0.2.0-3FB984)
+![version](https://img.shields.io/badge/version-0.3.0-3FB984)
 ![license](https://img.shields.io/badge/license-MIT-blue)
 ![platform](https://img.shields.io/badge/platform-macOS-lightgrey)
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-CC785C)
@@ -21,10 +21,14 @@ autoinstalador para macOS.
 ## 🚀 Inicio rápido
 
 ```text
-/plugin marketplace add josete734/pecuoc
-/plugin install pecuoc@josete734
-/pecuoc:setup
+claude plugin marketplace add josete734/pecuoc
+claude plugin install pecuoc@josete734
+claude plugin enable pecuoc@josete734
 ```
+
+> **Importante:** tras instalar o actualizar el plugin, reinicia la sesión de Claude Code para
+> que se carguen correctamente la skill, el command y el hook. Una vez reiniciada, ejecuta
+> `/pecuoc:setup`.
 
 `/pecuoc:setup` deja tu entorno LaTeX listo (clona P3CTeX, lo registra en TeX Live y compila
 un documento de prueba). Después, pide a la skill o al subagente `pecuoc-author` que te

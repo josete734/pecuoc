@@ -17,6 +17,25 @@ ls activity.pdf                    # ha d'existir
 pdfinfo activity.pdf | grep Pages  # ha de mostrar Pages: N (N ≥ 1)
 ```
 
+> **Nota:** `pdfinfo` forma part de **poppler** (instal·lable via Homebrew: `brew install poppler`) i **no** s'inclou amb MacTeX. Si no el tens disponible, pots usar la funció següent que intenta diverses alternatives:
+>
+> ```bash
+> pages() {
+>   if command -v pdfinfo &>/dev/null; then
+>     pdfinfo "$1" | awk '/^Pages/{print $2}'
+>   elif command -v mdls &>/dev/null; then
+>     mdls -name kMDItemNumberOfPages -raw "$1"
+>   else
+>     # Compta les marques de pàgina [N] del fitxer .log
+>     grep -oE '\[[0-9]+\]' "${1%.pdf}.log" \
+>       | tr -d '[]' | sort -n | tail -1
+>   fi
+> }
+> pages activity.pdf
+> ```
+>
+> La funció prova: (1) `pdfinfo` si existeix; (2) `mdls` (metadades Spotlight de macOS); (3) anàlisi del `.log` buscant les marques `[N]` que pdflatex escriu per a cada pàgina, ordenades numèricament per obtenir la darrera.
+
 ---
 
 ## Flux portàtil (sense registre global)
@@ -51,6 +70,18 @@ El fitxer `references.bib` ha de ser localitzable. Si és un directori amunt:
 ```bash
 export BIBINPUTS=".:..:."
 ```
+
+### Protecció de títols a .bib
+
+Els estils com `abbrvnat` o `plain` converteixen el títol a minúscules automàticament. Per preservar majúscules o comandes LaTeX dins del camp `title`, cal embolcallar-les amb claus `{}`:
+
+```bibtex
+title = {Una introducció a {\LaTeX} i la {UOC}}
+```
+
+Sense les claus, `\LaTeX` es transforma en `\latex` (comanda inexistent), la qual cosa provoca l'error **"Undefined control sequence"** al fitxer `.bbl` durant la compilació.
+
+A més, tota entrada `.bib` ha de tenir el camp `year`. Si manca, BibTeX avisa amb **"empty year"** al fitxer `.blg`.
 
 ---
 
