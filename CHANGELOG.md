@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1] - 2026-06-08
+### Added
+- El linter `scripts/lint-tex.sh` detecta también `\pxCodeIn{...}` con una URL
+  (`http(s)://`): al ser código inline no parte líneas y desborda el margen.
+### Docs
+- Documentado que `\pxCodeIn` no parte líneas; para URLs y cadenas largas usar
+  `\url{...}` (en `references/modules.md`, `SKILL.md` y el subagente).
+
 ## [0.3.0] - 2026-06-08
 ### Added
 - Linter pre-compilación `scripts/lint-tex.sh`: detecta `\bigskip\\`, `\pxCodeIn` con

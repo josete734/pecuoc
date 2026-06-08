@@ -80,6 +80,18 @@ for file in "${FILES[@]}"; do
         warn "       Sugerencia: usa '\\texttt{\\textasciitilde}' o '\\path' para rutas/símbolos."
         FINDINGS=$((FINDINGS + 1))
       done < <(grep -nE '\\pxCodeIn\{[^}]*[~\\#%_^&][^}]*\}' "$file" 2>/dev/null)
+
+      # ----------------------------------------------------------------
+      # Patrón 4: \pxCodeIn{...http(s)://...} — URL en código inline.
+      # \pxCodeIn no parte líneas, así que una URL larga desborda el
+      # margen (overfull hbox). Sugerencia: usar \url{...}.
+      # ----------------------------------------------------------------
+      while IFS= read -r m; do
+        ln="${m%%:*}"
+        warn "$file:$ln: \\pxCodeIn{...} con una URL (no parte líneas; desborda el margen)."
+        warn "       Sugerencia: usa '\\url{...}' para URLs y cadenas largas."
+        FINDINGS=$((FINDINGS + 1))
+      done < <(grep -nE '\\pxCodeIn\{[^}]*https?://[^}]*\}' "$file" 2>/dev/null)
       ;;
 
     *.bib)

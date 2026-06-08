@@ -9,7 +9,7 @@
       "name": "pecuoc",
       "source": "./",
       "description": "Asistente para escribir y compilar entregas UOC (PEC/PAC/PR) con P3CTeX.",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "author": { "name": "José Castillo" }
     }
   ]

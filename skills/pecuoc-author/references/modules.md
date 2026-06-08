@@ -131,7 +131,8 @@ El mètode \pxCodeIn{main()} és el punt d'entrada.
 > `\pxCodeIn` s'implementa sobre `\lstinline` i, per tant, **no és verbatim pur**. LaTeX processa l'argument en un mode especial que no protegeix tots els caràcters:
 >
 > - Els **caràcters actius** (`~` `\` `#` `%` `_` `^` `&`) i les **claus desbalancejades** dins de `\pxCodeIn{…}` trenquen la compilació amb errors típics com `Missing $ inserted` o `lstinline ended by EOL`.
-> - Per a **rutes o URLs** que continguin algun d'aquests caràcters, usa `\texttt{\textasciitilde/ruta}` o bé `\path|~/ruta|` (paquet `url`) en lloc de `\pxCodeIn`.
+> - Per a **rutes** que continguin algun d'aquests caràcters, usa `\texttt{\textasciitilde/ruta}` o bé `\path|~/ruta|` (paquet `url`) en lloc de `\pxCodeIn`.
+> - `\pxCodeIn` **no parteix línies**: una cadena llarga (típicament una **URL**) desborda el marge dret (*overfull hbox*). Per a URLs o cadenes llargues usa `\url{...}` (parteix per `/` i `.`) en lloc de `\pxCodeIn`.
 > - Reserva `\pxCodeIn` per a **identificadors simples** sense caràcters especials: `main()`, `latexmk`, `references.bib`.
 
 ---

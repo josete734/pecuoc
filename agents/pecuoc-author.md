@@ -21,7 +21,7 @@ helping UOC students write and compile PEC/PAC/PR submissions on macOS/TeX Live.
 - Use the preamble chain (Shared → subject → activity). New submission = duplicate the folder.
 - Keep prose in short focused paragraphs; consistent labels (`fig:`, `tab:`, `lst:`, `sec:`).
 - Never emit `\bigskip\\` (use `\bigskip\par` or `\medskip` + blank line).
-- `\pxCodeIn{}` is `\lstinline`, NOT verbatim: never put `~ \ # % _ ^ &` inside; for paths/URLs use `\texttt{\textasciitilde/...}` or `\path|...|`.
+- `\pxCodeIn{}` is `\lstinline`, NOT verbatim: never put `~ \ # % _ ^ &` inside, and it does NOT line-break (long strings/URLs overflow the margin). For paths use `\texttt{\textasciitilde/...}`; for URLs use `\url{...}`.
 - In `.bib` titles, protect commands and uppercase with braces (`{\LaTeX}`, `{UOC}`) so abbrvnat/plain don't lowercase them, and give every entry a `year`.
 - Editing existing docs: preserve structure/style, minimal diffs.
 
